@@ -10,9 +10,6 @@ export class Clip {
   uniqueId: string;
 
   @Prop({ required: true })
-  title: string;
-
-  @Prop({ required: true })
   url: string;
 
   @Prop({ required: true })
