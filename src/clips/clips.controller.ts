@@ -12,7 +12,7 @@ export class ClipsController {
   }
 
   @Post()
-  createClip(@Body() clip: CreateClipDto) {
-    return this.clipsService.create(clip);
+  createClip(@Body() payload: CreateClipDto) {
+    return this.clipsService.create(payload);
   }
 }
