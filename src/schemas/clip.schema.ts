@@ -9,7 +9,7 @@ export class Clip {
   @Prop({ default: () => v4() })
   uniqueId: string;
 
-  @Prop({ required: true })
+  @Prop({ unique: true, required: true })
   url: string;
 
   @Prop({ required: true })
@@ -20,6 +20,12 @@ export class Clip {
 
   @Prop({ required: true })
   gameId: string;
+
+  @Prop({
+    type: Boolean,
+    default: false,
+  })
+  approved: boolean;
 
   /*
   @Prop({
