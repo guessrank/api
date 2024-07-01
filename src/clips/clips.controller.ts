@@ -1,13 +1,13 @@
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Query, Get, Post } from '@nestjs/common';
 import { ClipsService } from './clips.service';
-import { CreateClipDto } from './dto/create.clip.dto';
+import { CreateClipDto } from './dto/create-clip.dto';
 
 @Controller('clips')
 export class ClipsController {
   constructor(private readonly clipsService: ClipsService) {}
 
   @Get()
-  async findAll() {
+  async findAll(query: any) {
     return this.clipsService.findAll();
   }
 
