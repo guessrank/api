@@ -1,8 +1,10 @@
 import { IsString, IsNotEmpty } from 'class-validator';
+import { IsYoutubeUrl } from 'src/common/decorators/is-youtube-url.decorator';
 
 export class CreateClipDto {
   @IsString()
   @IsNotEmpty()
+  @IsYoutubeUrl()
   url: string;
 
   @IsString()
@@ -12,4 +14,8 @@ export class CreateClipDto {
   @IsString()
   @IsNotEmpty()
   division: string;
+
+  @IsString()
+  @IsNotEmpty()
+  gameId: string;
 }
