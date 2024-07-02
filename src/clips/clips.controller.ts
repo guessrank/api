@@ -5,6 +5,7 @@ import { CreateClipDto } from './dto/create-clip.dto';
 import { GetClipDto } from './dto/get-clip.dto';
 import { ErrorType } from 'src/common/exceptions/error-types';
 import { ResponseUtil } from 'src/common/utils/response.util';
+import { Throttle, minutes } from '@nestjs/throttler';
 
 @Controller('clips')
 export class ClipsController {
@@ -29,6 +30,7 @@ export class ClipsController {
   }
 
   @Post()
+  @Throttle({ medium: { limit: 5, ttl: minutes(1) } })
   async createClip(@Body() payload: CreateClipDto) {
     try {
       return ResponseUtil.successResponse({
