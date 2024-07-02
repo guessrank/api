@@ -15,7 +15,6 @@ export class ClipsController {
   async findAll(@Query() query: GetClipDto): Promise<ResponseUtil> {
     const clips = await this.clipsService.findAll(query);
     const total = await this.clipsService.countAll(query);
-    // count clips
     const total_page = clips.length;
     return ResponseUtil.successResponse({
       message: 'Clips retrieved successfully',
