@@ -11,6 +11,7 @@ async function bootstrap() {
   const configService = app.get(ConfigService);
   configureGlobalPipes(app);
   app.setGlobalPrefix('api/v1');
+  app.enableCors();
   app.use(morgan(configService.get<string>('MORGAN_CONFIG', 'dev')));
   await app.listen(configService.get<number>('PORT', 3000));
 }
