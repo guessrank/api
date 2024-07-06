@@ -1,5 +1,4 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Rank } from './rank.schema';
 
 @Schema()
 export class Division {
@@ -7,7 +6,10 @@ export class Division {
   name: string;
 
   @Prop({ required: true })
-  rank: Rank;
+  imageSrc: string;
+
+  @Prop({ required: true })
+  level: number;
 }
 
 export const DivisionSchema = SchemaFactory.createForClass(Division);

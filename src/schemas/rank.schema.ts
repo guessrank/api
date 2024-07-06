@@ -1,5 +1,5 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-
+import { Division, DivisionSchema } from './division.schema';
 @Schema()
 export class Rank {
   @Prop({ required: true })
@@ -10,6 +10,9 @@ export class Rank {
 
   @Prop({ required: true })
   level: number;
+
+  @Prop({ type: [DivisionSchema], required: true })
+  divisions: Division[];
 }
 
 export const RankSchema = SchemaFactory.createForClass(Rank);

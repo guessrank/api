@@ -1,7 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { HydratedDocument } from 'mongoose';
 import { RankSchema, Rank } from './rank.schema';
-import { DivisionSchema, Division } from './division.schema';
 
 export type GameDocument = HydratedDocument<Game>;
 
@@ -21,9 +20,6 @@ export class Game {
 
   @Prop({ type: [RankSchema], required: true })
   ranks: Rank[];
-
-  @Prop({ type: [DivisionSchema], required: true })
-  divisions: Division[];
 }
 
 export const GameSchema = SchemaFactory.createForClass(Game);
