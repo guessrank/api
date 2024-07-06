@@ -4,6 +4,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
 import { ClipsModule } from './clips/clips.module';
+import { GamesModule } from './games/games.module';
 // TODO: apply validation
 import configuration from './config/configuration';
 
@@ -22,6 +23,7 @@ import configuration from './config/configuration';
       inject: [ConfigService],
     }),
     ClipsModule,
+    GamesModule,
   ],
   controllers: [],
   providers: [
