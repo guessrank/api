@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ThrottlerModule, ThrottlerGuard } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
@@ -15,9 +15,11 @@ import configuration from './config/configuration';
     }),
     ThrottlerModule.forRoot([]),
     MongooseModule.forRootAsync({
-      useFactory: () => ({
-        uri: process.env.MONGODB_URI,
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        uri: configService.get<string>('database_uri'),
       }),
+      inject: [ConfigService],
     }),
     ClipsModule,
   ],
