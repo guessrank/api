@@ -2,7 +2,7 @@ export const rocketLeagueData = [
   {
     uniqueId: 'rocketleague',
     name: 'Rocket League',
-    imageSrc: '/images/rocketleague.webp',
+    imageSrc: '/images/rocket-league.webp',
     description:
       'Guess the Rank of Players in Rocket League: Can You Determine Their Skill Level?',
     ranks: [
