@@ -8,161 +8,161 @@ export const rocketLeagueData = [
     ranks: [
       {
         name: 'Bronze',
-        imageSrc: '/images/rocket-league/bronze.webp',
+        imageSrc: '/images/rocket-league/bronze-1.webp',
         level: 1,
         divisions: [
           {
             name: 'I',
-            imageSrc: '/images/rocket-league/bronze1.webp',
+            imageSrc: '/images/rocket-league/bronze-1.webp',
             level: 1,
           },
           {
             name: 'II',
-            imageSrc: '/images/rocket-league/bronze2.webp',
+            imageSrc: '/images/rocket-league/bronze-2.webp',
             level: 2,
           },
           {
             name: 'III',
-            imageSrc: '/images/rocket-league/bronze3.webp',
+            imageSrc: '/images/rocket-league/bronze-3.webp',
             level: 3,
           },
         ],
       },
       {
         name: 'Silver',
-        imageSrc: '/images/ranks/silver.webp',
+        imageSrc: '/images/rocket-league/silver-1.webp',
         level: 2,
         divisions: [
           {
             name: 'I',
-            imageSrc: '/images/rocket-league/silver1.webp',
+            imageSrc: '/images/rocket-league/silver-1.webp',
             level: 1,
           },
           {
             name: 'II',
-            imageSrc: '/images/rocket-league/silver2.webp',
+            imageSrc: '/images/rocket-league/silver-2.webp',
             level: 2,
           },
           {
             name: 'III',
-            imageSrc: '/images/rocket-league/silver3.webp',
+            imageSrc: '/images/rocket-league/silver-3.webp',
             level: 3,
           },
         ],
       },
       {
         name: 'Gold',
-        imageSrc: '/images/ranks/gold.webp',
+        imageSrc: '/images/rocket-league/gold-1.webp',
         level: 3,
         divisions: [
           {
             name: 'I',
-            imageSrc: '/images/rocket-league/gold1.webp',
+            imageSrc: '/images/rocket-league/gold-1.webp',
             level: 1,
           },
           {
             name: 'II',
-            imageSrc: '/images/rocket-league/gold2.webp',
+            imageSrc: '/images/rocket-league/gold-2.webp',
             level: 2,
           },
           {
             name: 'III',
-            imageSrc: '/images/rocket-league/gold3.webp',
+            imageSrc: '/images/rocket-league/gold-3.webp',
             level: 3,
           },
         ],
       },
       {
         name: 'Platinum',
-        imageSrc: '/images/ranks/platinum.webp',
+        imageSrc: '/images/rocket-league/platinum-1.webp',
         level: 4,
         divisions: [
           {
             name: 'I',
-            imageSrc: '/images/rocket-league/platinum1.webp',
+            imageSrc: '/images/rocket-league/platinum-1.webp',
             level: 1,
           },
           {
             name: 'II',
-            imageSrc: '/images/rocket-league/platinum2.webp',
+            imageSrc: '/images/rocket-league/platinum-2.webp',
             level: 2,
           },
           {
             name: 'III',
-            imageSrc: '/images/rocket-league/platinum3.webp',
+            imageSrc: '/images/rocket-league/platinum-3.webp',
             level: 3,
           },
         ],
       },
       {
         name: 'Diamond',
-        imageSrc: '/images/ranks/diamond.webp',
+        imageSrc: '/images/rocket-league/diamond-1.webp',
         level: 5,
         divisions: [
           {
             name: 'I',
-            imageSrc: '/images/rocket-league/diamond1.webp',
+            imageSrc: '/images/rocket-league/diamond-1.webp',
             level: 1,
           },
           {
             name: 'II',
-            imageSrc: '/images/rocket-league/diamond2.webp',
+            imageSrc: '/images/rocket-league/diamond-2.webp',
             level: 2,
           },
           {
             name: 'III',
-            imageSrc: '/images/rocket-league/diamond3.webp',
+            imageSrc: '/images/rocket-league/diamond-3.webp',
             level: 3,
           },
         ],
       },
       {
         name: 'Champion',
-        imageSrc: '/images/ranks/champion.webp',
+        imageSrc: '/images/rocket-league/champion-1.webp',
         level: 6,
         divisions: [
           {
             name: 'I',
-            imageSrc: '/images/rocket-league/champion1.webp',
+            imageSrc: '/images/rocket-league/champion-1.webp',
             level: 1,
           },
           {
             name: 'II',
-            imageSrc: '/images/rocket-league/champion2.webp',
+            imageSrc: '/images/rocket-league/champion-2.webp',
             level: 2,
           },
           {
             name: 'III',
-            imageSrc: '/images/rocket-league/champion3.webp',
+            imageSrc: '/images/rocket-league/champion-3.webp',
             level: 3,
           },
         ],
       },
       {
         name: 'Grand Champion',
-        imageSrc: '/images/ranks/grandchampion.webp',
+        imageSrc: '/images/rocket-league/grand-champion-1.webp',
         level: 7,
         divisions: [
           {
             name: 'I',
-            imageSrc: '/images/rocket-league/grandchampion1.webp',
+            imageSrc: '/images/rocket-league/grand-champion-1.webp',
             level: 1,
           },
           {
             name: 'II',
-            imageSrc: '/images/rocket-league/grandchampion2.webp',
+            imageSrc: '/images/rocket-league/grand-champion-2.webp',
             level: 2,
           },
           {
             name: 'III',
-            imageSrc: '/images/rocket-league/grandchampion3.webp',
+            imageSrc: '/images/rocket-league/grand-champion-3.webp',
             level: 3,
           },
         ],
       },
       {
         name: 'Supersonic Legend',
-        imageSrc: '/images/ranks/supersoniclegend.webp',
+        imageSrc: '/images/rocket-league/supersonic-legend.webp',
         level: 8,
         divisions: [],
       },

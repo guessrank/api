@@ -1,5 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { ConfigService } from '@nestjs/config';
 import { Model } from 'mongoose';
 import { Game } from '../../schemas/game.schema';
 import { gamesData } from '../data/games.data';
@@ -7,7 +8,10 @@ import { gamesData } from '../data/games.data';
 @Injectable()
 export class SeederService {
   private readonly logger = new Logger(SeederService.name);
-  constructor(@InjectModel(Game.name) private gameModel: Model<Game>) {}
+  constructor(
+    @InjectModel(Game.name) private gameModel: Model<Game>,
+    private configService: ConfigService,
+  ) {}
 
   async seed(collectionName: string): Promise<void> {
     if (await this.gameModel.countDocuments().exec()) {
@@ -15,9 +19,22 @@ export class SeederService {
       return;
     }
     this.logger.log(`Seeding collection ${collectionName}...`);
+    const baseUrl = this.configService.get<string>('base_url');
+    let data = gamesData[0].map((game) => ({
+      ...game,
+      imageSrc: `${baseUrl}${game.imageSrc}`,
+      ranks: game.ranks.map((rank) => ({
+        ...rank,
+        imageSrc: `${baseUrl}${rank.imageSrc}`,
+        divisions: rank.divisions.map((division) => ({
+          ...division,
+          imageSrc: `${baseUrl}${division.imageSrc}`,
+        })),
+      })),
+    }));
     switch (collectionName) {
       case 'Game':
-        await this.gameModel.insertMany(gamesData[0]);
+        await this.gameModel.insertMany(data);
         break;
       default:
         throw new Error('Invalid collection argument.');
