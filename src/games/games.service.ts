@@ -2,19 +2,17 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Game } from 'src/schemas/game.schema';
-
+import { GetGameDto } from './dto/get-game.dto';
 @Injectable()
 export class GamesService {
   constructor(@InjectModel(Game.name) private gameModel: Model<Game>) {}
 
-  /**
-   * Find all games
-   * @returns {Promise<Game[]>} - A promise that resolves with an array of games
-   */
-  async findAll(): Promise<Game[]> {
+  async findAll(query: GetGameDto): Promise<Game[]> {
     return this.gameModel
       .find(
-        {},
+        {
+          ...(query.uniqueId && { uniqueId: query.uniqueId }),
+        },
         {
           _id: 0,
           __v: 0,

@@ -31,7 +31,7 @@ import configuration from './config/configuration';
     }),
     ClipsModule,
     GamesModule,
-    ImagesModule,
+    ImagesModule, // maybe should be removed
   ],
   controllers: [],
   providers: [
