@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { Clip } from '../schemas/clip.schema';
 import { CreateClipDto } from './dto/create-clip.dto';
 import { GetClipDto } from './dto/get-clip.dto';
+import { youtubeEmbedUrl } from 'src/common/utils/yt-embed.util';
 @Injectable()
 export class ClipsService {
   constructor(@InjectModel(Clip.name) private clipModel: Model<Clip>) {}
@@ -57,5 +58,9 @@ export class ClipsService {
    */
   async countAll(query: GetClipDto): Promise<number> {
     return this.clipModel.countDocuments(this.buildSearchOptions(query));
+  }
+
+  async findByVideoUrl(youtubeVideoUrl: string): Promise<Clip> {
+    return this.clipModel.findOne({ url: youtubeEmbedUrl(youtubeVideoUrl) });
   }
 }
