@@ -24,6 +24,12 @@ export class GamesService {
       .exec();
   }
 
+  async findGameById(uniqueId: string): Promise<Game> {
+    return this.gameModel.findOne({
+      uniqueId,
+    });
+  }
+
   async findRankGameByLevel(
     gameUniqueId: string,
     level: number,

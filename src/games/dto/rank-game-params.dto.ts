@@ -1,3 +1,4 @@
+import { Transform } from 'class-transformer';
 import { IsNumber, IsString } from 'class-validator';
 
 export class RankGameParamsDto {
@@ -5,5 +6,6 @@ export class RankGameParamsDto {
   uniqueId?: string;
 
   @IsNumber()
+  @Transform(({ value }) => parseInt(value))
   level: number;
 }
