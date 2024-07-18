@@ -1,7 +1,8 @@
-import { Controller, Get, Query } from '@nestjs/common';
+import { Controller, Get, Query, Param } from '@nestjs/common';
 import { GamesService } from './games.service';
 import { ResponseUtil } from 'src/common/utils/response.util';
 import { GetGameDto } from './dto/get-game.dto';
+import { RankGameParamsDto } from './dto/rank-game-params.dto';
 
 @Controller('games')
 export class GamesController {
@@ -12,6 +13,19 @@ export class GamesController {
     return ResponseUtil.successResponse({
       message: 'Games retrieved successfully',
       body: await this.gamesService.findAll(query),
+    });
+  }
+
+  @Get('/:uniqueId/ranks/:level')
+  async findRankGameByLevel(
+    @Param() params: RankGameParamsDto,
+  ): Promise<ResponseUtil> {
+    return ResponseUtil.successResponse({
+      message: 'Rank retrieved successfully',
+      body: await this.gamesService.findRankGameByLevel(
+        params.uniqueId,
+        params.level,
+      ),
     });
   }
 }

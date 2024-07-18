@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Game } from 'src/schemas/game.schema';
+import { Rank } from 'src/schemas/rank.schema';
 import { GetGameDto } from './dto/get-game.dto';
 @Injectable()
 export class GamesService {
@@ -21,5 +22,16 @@ export class GamesService {
         },
       )
       .exec();
+  }
+
+  async findRankGameByLevel(
+    gameUniqueId: string,
+    level: number,
+  ): Promise<Rank[]> {
+    const game = await this.gameModel
+      .findOne({ uniqueId: gameUniqueId })
+      .exec();
+    console.log(game);
+    return game.ranks.filter((rank) => rank.level === level);
   }
 }
