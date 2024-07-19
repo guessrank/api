@@ -20,21 +20,28 @@ export class SeederService {
     }
     this.logger.log(`Seeding collection ${collectionName}...`);
     const baseUrl = this.configService.get<string>('base_url');
-    let data = gamesData[0].map((game) => ({
-      ...game,
-      imageSrc: `${baseUrl}${game.imageSrc}`,
-      ranks: game.ranks.map((rank) => ({
-        ...rank,
-        imageSrc: `${baseUrl}${rank.imageSrc}`,
-        divisions: rank.divisions.map((division) => ({
-          ...division,
-          imageSrc: `${baseUrl}${division.imageSrc}`,
+    let mappedData = [];
+    try {
+      mappedData = gamesData.map((game: Game) => ({
+        ...game,
+        imageSrc: `${baseUrl}${game.imageSrc}`,
+        ranks: game.ranks.map((rank) => ({
+          ...rank,
+          imageSrc: `${baseUrl}${rank.imageSrc}`,
+          divisions: rank.divisions.map((division) => ({
+            ...division,
+            imageSrc: `${baseUrl}${division.imageSrc}`,
+          })),
         })),
-      })),
-    }));
+      }));
+      this.logger.log('Mapped data successfully.');
+    } catch (error) {
+      this.logger.error(`Mapping data failed: ${error.message}`);
+      return;
+    }
     switch (collectionName) {
       case 'Game':
-        await this.gameModel.insertMany(data);
+        await this.gameModel.insertMany(mappedData);
         break;
       default:
         throw new Error('Invalid collection argument.');
