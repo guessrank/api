@@ -17,9 +17,21 @@ export class SeederService {
   ) {}
 
   async seed(collectionName: string): Promise<void> {
-    if (await this.gameModel.countDocuments().exec()) {
-      this.logger.log('Data already exists in the collection.');
-      return;
+    switch (collectionName) {
+      case 'Game':
+        if (await this.gameModel.countDocuments().exec()) {
+          this.logger.log('Data already exists in the collection.');
+          return;
+        }
+        break;
+      case 'Clip':
+        if (await this.clipModel.countDocuments().exec()) {
+          this.logger.log('Data already exists in the collection.');
+          return;
+        }
+        break;
+      default:
+        throw new Error('Invalid collection argument.');
     }
     this.logger.log(`Seeding collection ${collectionName}...`);
 
