@@ -1,6 +1,6 @@
 {
   "name": "guessrank-api",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Official API for GuessRank.xyz, providing comprehensive data access and interaction capabilities.",
   "author": "Manuel Cabral",
   "private": true,
