@@ -11,13 +11,13 @@ export class GetClipDto {
   @IsOptional()
   clipId?: string;
 
-  @IsString()
+  @IsNumber()
   @IsOptional()
-  rank?: string;
+  rankLevel?: Number;
 
-  @IsString()
+  @IsNumber()
   @IsOptional()
-  division?: string;
+  divisionLevel?: Number;
 
   @IsString()
   @IsOptional()

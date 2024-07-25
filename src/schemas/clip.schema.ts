@@ -13,10 +13,10 @@ export class Clip {
   url: string;
 
   @Prop({ required: true })
-  rank: string;
+  rankLevel: Number;
 
   @Prop({ required: true })
-  division: string;
+  divisionLevel: Number;
 
   @Prop({ required: true })
   gameId: string;

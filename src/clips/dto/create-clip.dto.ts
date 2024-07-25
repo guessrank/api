@@ -1,4 +1,4 @@
-import { IsString, IsNotEmpty } from 'class-validator';
+import { IsString, IsNotEmpty, IsNumber } from 'class-validator';
 import { IsYoutubeUrl } from 'src/common/decorators/is-youtube-url.decorator';
 
 export class CreateClipDto {
@@ -7,13 +7,13 @@ export class CreateClipDto {
   @IsYoutubeUrl()
   url: string;
 
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
-  rank: string;
+  rankLevel: Number;
 
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
-  division: string;
+  divisionLevel: Number;
 
   @IsString()
   @IsNotEmpty()

@@ -18,6 +18,7 @@ export class ClipsService {
     return {
       approved: query.approved,
       ...(query.gameId && { gameId: query.gameId }),
+      // TODO: add more filters
     };
   }
 
