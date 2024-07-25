@@ -3,13 +3,16 @@ import { InjectModel } from '@nestjs/mongoose';
 import { ConfigService } from '@nestjs/config';
 import { Model } from 'mongoose';
 import { Game } from '../../schemas/game.schema';
-import { gamesData } from '../data/games.data';
+import { Clip } from '../../schemas/clip.schema';
+import { gamesData } from '../data/games';
+import { clipsData } from '../data/clips';
 
 @Injectable()
 export class SeederService {
   private readonly logger = new Logger(SeederService.name);
   constructor(
     @InjectModel(Game.name) private gameModel: Model<Game>,
+    @InjectModel(Clip.name) private clipModel: Model<Clip>,
     private configService: ConfigService,
   ) {}
 
@@ -19,29 +22,34 @@ export class SeederService {
       return;
     }
     this.logger.log(`Seeding collection ${collectionName}...`);
-    const baseUrl = this.configService.get<string>('base_url');
-    let mappedData = [];
-    try {
-      mappedData = gamesData.map((game: Game) => ({
-        ...game,
-        imageSrc: `${baseUrl}${game.imageSrc}`,
-        ranks: game.ranks.map((rank) => ({
-          ...rank,
-          imageSrc: `${baseUrl}${rank.imageSrc}`,
-          divisions: rank.divisions.map((division) => ({
-            ...division,
-            imageSrc: `${baseUrl}${division.imageSrc}`,
-          })),
-        })),
-      }));
-      this.logger.log('Mapped data successfully.');
-    } catch (error) {
-      this.logger.error(`Mapping data failed: ${error.message}`);
-      return;
-    }
+
     switch (collectionName) {
-      case 'Game':
+      case 'Game': {
+        const baseUrl = this.configService.get<string>('base_url');
+        let mappedData = [];
+        try {
+          mappedData = gamesData.map((game: Game) => ({
+            ...game,
+            imageSrc: `${baseUrl}${game.imageSrc}`,
+            ranks: game.ranks.map((rank) => ({
+              ...rank,
+              imageSrc: `${baseUrl}${rank.imageSrc}`,
+              divisions: rank.divisions.map((division) => ({
+                ...division,
+                imageSrc: `${baseUrl}${division.imageSrc}`,
+              })),
+            })),
+          }));
+          this.logger.log('Mapped data successfully.');
+        } catch (error) {
+          this.logger.error(`Mapping data failed: ${error.message}`);
+          return;
+        }
         await this.gameModel.insertMany(mappedData);
+        break;
+      }
+      case 'Clip':
+        await this.clipModel.insertMany(clipsData.flat());
         break;
       default:
         throw new Error('Invalid collection argument.');
@@ -57,7 +65,16 @@ export class SeederService {
 
   async clear(collectionName: string): Promise<void> {
     this.logger.log(`Clearing collection ${collectionName}...`);
-    await this.gameModel.deleteMany({});
+    switch (collectionName) {
+      case 'Game':
+        await this.gameModel.deleteMany({});
+        break;
+      case 'Clip':
+        await this.clipModel.deleteMany({});
+        break;
+      default:
+        throw new Error('Invalid collection argument.');
+    }
     this.logger.log(`Collection ${collectionName} has been cleared.`);
   }
 
