@@ -7,7 +7,7 @@ import { join } from 'path';
 import { APP_GUARD } from '@nestjs/core';
 import { ClipsModule } from './clips/clips.module';
 import { GamesModule } from './games/games.module';
-import { ImagesModule } from './images/images.module';
+import { AuthModule } from './auth/auth.module';
 // TODO: apply validation
 import configuration from './config/configuration';
 
@@ -31,7 +31,7 @@ import configuration from './config/configuration';
     }),
     ClipsModule,
     GamesModule,
-    ImagesModule, // maybe should be removed
+    AuthModule,
   ],
   controllers: [],
   providers: [
